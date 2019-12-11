@@ -7,18 +7,50 @@
 //
 
 import UIKit
+import Ztopwatch
 
 class ViewController: UIViewController {
+    
+    private var stopwatch: ZtopwatchI = Ztopwatch()
 
+    // MARK: - Outlets
+
+    @IBOutlet private weak var isRunningResultLabel: UILabel!
+    @IBOutlet private weak var durationResultLabel: UILabel!
+
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    // MARK: - User actions
+    
+    @IBAction func start() {
+        stopwatch.start()
     }
-
+    
+    @IBAction func stop() {
+        stopwatch.stop()
+    }
+    
+    @IBAction func reset() {
+        stopwatch.reset()
+        
+        isRunningResultLabel.text = "---"
+        durationResultLabel.text = "---"
+    }
+    
+    @IBAction func measure() {
+        logResults()
+    }
+    
+    // MARK: - Private
+    
+    private func logResults() {
+        isRunningResultLabel.text = "\(stopwatch.isRunning)"
+        durationResultLabel.text = "\(stopwatch.duration)"
+    }
 }
 

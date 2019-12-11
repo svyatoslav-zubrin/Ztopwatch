@@ -1,0 +1,6 @@
+framework module Ztopwatch {
+  umbrella header "Ztopwatch-umbrella.h"
+
+  export *
+  module * { export * }
+}
